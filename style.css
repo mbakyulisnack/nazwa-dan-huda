@@ -1,0 +1,1230 @@
+/* Custom Properties (Variables) for easy theme changes */
+:root {
+    --color-primary: #6F4E37; /* Darker, richer brown (SaddleBrown equivalent) */
+    --color-secondary: #D4AF37; /* Richer gold (DarkGoldenrod equivalent) */
+    --color-text-dark: #2A1B0E; /* Very dark brown - for main text */
+    --color-text-light: #FDF5E6; /* OldLace - for text on dark backgrounds */
+    --color-background-light: #FFF8F0; /* Lighter FloralWhite */
+    --color-background-dark: #3A251A; /* Deeper dark brown - for footer, dark sections */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+    --font-accent: 'Cormorant Garamond', serif;
+    --font-numbers: 'Montserrat', sans-serif;
+}
+
+/* Base Styling */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll from overflow */
+}
+
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fefdfc, #fffaf5); /* Very subtle light gradient */
+    color: var(--color-text-dark);
+    line-height: 1.7;
+    position: relative;
+    /* Main background texture - a subtle batik pattern */
+    background-image: url('https://imgur.com/x0wV8mR.png'); /* Pola batik halus dari Imgur */
+    background-repeat: repeat;
+    background-size: 200px; /* Adjust size of the pattern */
+}
+
+/* Ensure images and media are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Global Container */
+.container {
+    max-width: 1050px; /* Slightly wider */
+    margin: 20px auto; /* Margin from top/bottom */
+    background-color: #ffffff;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2); /* More pronounced, soft shadow */
+    border-radius: 20px; /* More rounded */
+    overflow: hidden;
+    position: relative;
+    z-index: 10; /* Above any fixed background elements */
+    border: 1px solid rgba(var(--color-secondary), 0.3); /* Subtle gold border around container */
+}
+
+/* Decorative Overlays (Static Ornaments) */
+.decorative-overlay {
+    position: fixed; /* Fixed so they stay in place during scroll */
+    width: 200px; /* Size of ornament image */
+    height: 200px;
+    opacity: 0.1; /* Very subtle */
+    z-index: 5; /* Below container content */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.top-left-ornament {
+    top: -50px;
+    left: -50px;
+    background-image: url('https://imgur.com/rN9m1wS.png'); /* Ornamen sudut kiri atas dari Imgur */
+    transform: rotate(0deg); /* Initial rotation */
+    animation: rotateSubtle 100s linear infinite reverse; /* Slower, reverse rotation */
+}
+
+.bottom-right-ornament {
+    bottom: -50px;
+    right: -50px;
+    background-image: url('https://imgur.com/0H1J8uM.png'); /* Ornamen sudut kanan bawah dari Imgur */
+    transform: rotate(180deg); /* Rotated to match bottom-right */
+    animation: rotateSubtle 100s linear infinite; /* Slower, normal rotation */
+}
+
+/* Sections General */
+.section-padding {
+    padding: 90px 60px; /* More generous padding */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For any internal animations */
+    /* Subtle inner border with shadow */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+    margin-bottom: 2px; /* Small gap between sections */
+}
+
+.section-padding:last-of-type {
+    margin-bottom: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.08); /* More pronounced text shadow */
+}
+
+h1 {
+    font-size: 5em; /* Even larger */
+    letter-spacing: 3px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    color: var(--color-text-light);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 10px rgba(0,0,0,0.5); /* Glowing text */
+}
+h2 {
+    font-size: 3.5em; /* Even larger */
+    letter-spacing: 1.5px;
+    color: var(--color-text-light);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 8px rgba(0,0,0,0.3);
+}
+h3 {
+    font-size: 2.8em; /* Even larger */
+    color: var(--color-primary);
+    position: relative;
+    padding-bottom: 20px; /* More space for the underline */
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+}
+h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 120px; /* Longer underline */
+    height: 4px; /* Thicker underline */
+    background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(var(--color-secondary), 0.5); /* Glow for underline */
+}
+h4 {
+    font-size: 2em;
+    color: var(--color-primary);
+}
+
+p {
+    font-size: 1.15em; /* Slightly larger body text */
+    color: var(--color-text-dark);
+}
+
+/* Buttons General */
+.btn {
+    display: inline-flex; /* For icon alignment */
+    align-items: center;
+    background: linear-gradient(45deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: var(--color-text-light);
+    padding: 18px 40px; /* More generous padding */
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em; /* Larger font */
+    letter-spacing: 0.8px; /* More prominent letter spacing */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation curve */
+    margin-top: 30px;
+    box-shadow: 0 8px 20px rgba(var(--color-primary), 0.4); /* Stronger shadow */
+    border: none;
+    cursor: pointer;
+    overflow: hidden; /* For inner glow effect */
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(var(--color-primary), 0.5);
+    background: linear-gradient(45deg, var(--color-secondary) 0%, var(--color-primary) 100%); /* Reverse gradient on hover */
+}
+
+/* Inner glow effect on hover */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* White highlight */
+    transform: skewX(-30deg);
+    transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn .icon {
+    margin-right: 12px;
+    font-size: 1.3em;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(45deg, #25D366, #128C7E); /* WhatsApp green gradient */
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:hover {
+    background: linear-gradient(45deg, #128C7E, #25D366);
+}
+
+.btn-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); /* Instagram gradient */
+    box-shadow: 0 8px 20px rgba(221, 42, 123, 0.4);
+}
+
+.btn-instagram:hover {
+    background: linear-gradient(45deg, #bc1888, #cc2366, #dc2743, #e6683c, #f09433);
+}
+
+/* Music Control Button */
+.music-control {
+    position: fixed;
+    bottom: 30px; /* Adjust position as needed */
+    right: 30px; /* Adjust position as needed */
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-text-light);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000; /* Ensure it's on top of everything */
+    overflow: hidden; /* Hide overflowing text */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.music-control:hover {
+    width: 150px; /* Expand on hover to show text */
+    border-radius: 30px; /* Change shape on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.music-control .icon-music {
+    margin-right: 0; /* No margin initially */
+    transition: margin-right 0.3s ease;
+}
+
+.music-control:hover .icon-music {
+    margin-right: 10px; /* Add margin to push text */
+}
+
+.music-control .music-text {
+    font-size: 0.8em; /* Smaller text */
+    font-weight: bold;
+    opacity: 0;
+    width: 0; /* Hidden initially */
+    overflow: hidden;
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.music-control:hover .music-text {
+    opacity: 1;
+    width: auto; /* Show text on hover */
+}
+
+.music-control.playing .icon-music {
+    animation: rotateAndPulse 1.5s infinite linear; /* Animation for playing state */
+}
+
+/* Hero Section */
+.hero-section {
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), /* Even darker overlay */
+        url('https://images.unsplash.com/photo-1629859591461-9491740ce1c8?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQwfHxJbmRvbmVzaWFuJTIwd29tYW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover; /* Gambar hero wedding Jawa dari Unsplash */
+    color: var(--color-text-light);
+    padding: 180px 60px; /* More padding for grander feel */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5px solid var(--color-secondary); /* Strong gold border at bottom */
+}
+
+/* Subtle texture on hero background */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png'); /* Paper texture */
+    opacity: 0.15; /* More visible texture */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    animation: fadeInScale 2s ease-out forwards; /* Longer, smoother initial animation */
+}
+
+.salam {
+    font-family: var(--font-accent);
+    font-size: 1.8em; /* Larger */
+    margin-bottom: 30px;
+    font-style: italic;
+    color: var(--color-secondary);
+    text-shadow: 0 0 12px rgba(var(--color-secondary), 0.7); /* Stronger glow */
+}
+
+.tanggal-acara {
+    font-size: 1.8em; /* Larger */
+    margin-top: 30px;
+    font-weight: bold;
+    color: var(--color-secondary);
+    letter-spacing: 2px;
+}
+
+.countdown {
+    font-family: var(--font-numbers);
+    font-size: 3.5em; /* Even larger countdown */
+    margin-top: 50px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: var(--color-secondary);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); /* Stronger gold glow */
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* More space between units */
+    flex-wrap: wrap;
+}
+
+.countdown span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(var(--color-background-dark), 0.4); /* More opaque background */
+    padding: 20px 30px; /* More padding */
+    border-radius: 15px; /* More rounded */
+    backdrop-filter: blur(8px); /* Stronger frosted glass effect */
+    border: 2px solid rgba(var(--color-secondary), 0.6); /* Thicker gold border */
+    min-width: 110px; /* Wider */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Shadow for depth */
+}
+
+.countdown span div {
+    font-size: 0.4em; /* Smaller unit labels relative to numbers */
+    font-weight: normal;
+    margin-top: 8px;
+    color: var(--color-text-light);
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* Scroll Button - Diperbarui untuk tampilan mewah */
+.btn-scroll {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%); /* Gradien emas ke cokelat */
+    color: var(--color-text-light);
+    padding: 18px 45px; /* Padding lebih besar */
+    border-radius: 50px; /* Bentuk pil */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.25em; /* Ukuran font lebih besar */
+    letter-spacing: 1px; /* Spasi antar huruf */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transisi mulus */
+    margin-top: 50px; /* Jarak lebih jauh dari countdown */
+    box-shadow: 0 10px 25px rgba(var(--color-secondary), 0.4); /* Bayangan emas */
+    border: 3px solid rgba(var(--color-text-light), 0.6); /* Border putih transparan yang menonjol */
+    position: relative;
+    overflow: hidden; /* Untuk efek glow */
+    z-index: 6; /* Pastikan di atas elemen lain di hero */
+}
+
+.btn-scroll:hover {
+    transform: translateY(-8px) scale(1.04); /* Lebih terangkat dan sedikit membesar */
+    box-shadow: 0 18px 35px rgba(var(--color-secondary), 0.6); /* Bayangan lebih kuat */
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); /* Gradien terbalik */
+    border-color: var(--color-text-light); /* Border menjadi solid */
+}
+
+/* Efek cahaya internal pada hover */
+.btn-scroll::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%; /* Awal dari luar kiri */
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Warna cahaya */
+    transform: skewX(-30deg); /* Bentuk miring */
+    transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-scroll:hover::before {
+    left: 120%; /* Bergerak ke luar kanan */
+}
+
+
+/* Animated Butterflies (will be positioned by JS) */
+.butterfly {
+    position: absolute;
+    width: 60px; /* Larger butterfly */
+    height: 60px;
+    background-image: url('https://imgur.com/kS9E1S4.png'); /* Gold butterfly image dari Imgur */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    animation: fly 15s linear infinite; /* Animation defined below */
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 7; /* Above hero content, but below text if needed */
+}
+
+/* Mempelai Section */
+#profil-mempelai {
+    background-color: var(--color-background-light);
+    position: relative;
+    z-index: 20;
+    border-bottom: 2px dashed rgba(var(--color-primary), 0.2); /* Dashed separator */
+}
+
+.mempelai-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 70px; /* More space */
+    margin-top: 60px;
+}
+
+.mempelai-item {
+    flex: 0 0 calc(50% - 40px); /* For larger screens, 2 items per row */
+    max-width: 480px; /* Wider */
+    background: linear-gradient(135deg, #ffffff, #fdfaf5); /* Subtle gradient for card */
+    padding: 50px; /* More padding */
+    border-radius: 20px; /* More rounded */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); /* Softer, larger shadow */
+    border: 2px solid rgba(var(--color-secondary), 0.5); /* Prominent gold border */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d; /* For 3D transform */
+}
+
+.mempelai-item:hover {
+    transform: translateY(-15px) rotateX(5deg) scale(1.01); /* More pronounced lift and tilt */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.img-mempelai {
+    width: 220px; /* Even larger image */
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid var(--color-secondary); /* Thicker gold border */
+    box-shadow: 0 0 0 10px rgba(var(--color-secondary), 0.4), 0 0 20px rgba(0,0,0,0.2); /* Outer glow and shadow */
+    margin-bottom: 35px;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
+}
+
+.mempelai-item:hover .img-mempelai {
+    transform: scale(1.1) rotate(5deg); /* More pronounced rotate on hover */
+}
+
+.mempelai-item h4 {
+    font-family: var(--font-heading);
+    font-size: 2.3em; /* Larger name */
+    color: var(--color-primary);
+    margin-bottom: 12px;
+}
+
+.mempelai-item p {
+    font-size: 1.1em;
+    color: #5A4033;
+    margin-bottom: 25px; /* Space for button */
+}
+
+/* Ornament Separators for Sections */
+.section-padding::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px; /* Wider ornament */
+    height: 50px; /* Taller */
+    background-image: url('https://imgur.com/v2u0c4M.png'); /* Decorative floral ornament dari Imgur */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.8;
+}
+#profil-mempelai::before { top: -25px; } /* Adjust position for each section */
+#ayat-quran::before { top: -25px; }
+#kisah-cinta::before { top: -25px; }
+#detail-acara::before { top: -25px; }
+#galeri::before { top: -25px; }
+#hadiah-digital::before { top: -25px; }
+#rsvp-ucapan::before { top: -25px; } /* Updated ID */
+
+
+/* Ayat Quran Section */
+#ayat-quran {
+    background-color: #fefcf9;
+    border-bottom: 2px dashed rgba(var(--color-primary), 0.2);
+}
+
+.ayat-card {
+    max-width: 800px;
+    margin: 60px auto 0;
+    background: linear-gradient(160deg, #fffaf5, #fefefb);
+    border: 2px solid var(--color-secondary);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ayat-card .arab {
+    font-family: 'Amiri', serif; /* Or any beautiful Arabic font */
+    font-size: 2.2em;
+    line-height: 2em;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    direction: rtl; /* Right-to-left for Arabic */
+    text-align: right;
+}
+
+.ayat-card .latin {
+    font-family: var(--font-accent);
+    font-size: 1.2em;
+    font-style: italic;
+    color: #8B4513; /* SaddleBrown */
+    margin-bottom: 15px;
+}
+
+.ayat-card .arti {
+    font-size: 1.15em;
+    margin-bottom: 25px;
+    color: var(--color-text-dark);
+}
+
+.ayat-card .sumber {
+    font-size: 1em;
+    font-weight: bold;
+    color: #7B3F00; /* Darker brown */
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Kisah Cinta Section (Timeline) */
+#kisah-cinta {
+    background-color: var(--color-background-light);
+    border-bottom: 2px dashed rgba(var(--color-primary), 0.2);
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding: 0 10px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--color-secondary); /* Gold line */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(var(--color-secondary), 0.5);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: var(--color-background-light);
+    border: 4px solid var(--color-primary);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(var(--color-primary), 0.3);
+}
+
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+.timeline-item.left::after {
+    left: -14px;
+}
+
+.timeline-item.right::after {
+    left: -14px; /* Same position for dot on the line */
+}
+
+.timeline-content {
+    padding: 30px;
+    background: linear-gradient(135deg, #fffaf5, #fefefb);
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(var(--color-primary), 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-content h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--color-primary);
+    font-size: 1.8em;
+}
+
+.timeline-content p {
+    font-size: 1.05em;
+    color: var(--color-text-dark);
+}
+
+
+/* Detail Acara Section */
+#detail-acara {
+    background-color: #fefcf9;
+    border-bottom: 2px dashed rgba(var(--color-primary), 0.2);
+}
+
+.event-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* More space */
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+
+.event-card {
+    background: linear-gradient(160deg, var(--color-background-light), #fbf7f0);
+    border: 3px solid var(--color-secondary); /* Thicker gold border */
+    padding: 45px; /* More padding */
+    border-radius: 20px; /* More rounded */
+    max-width: 500px;
+    flex: 1 1 48%; /* Allow flex basis */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.event-card:hover {
+    transform: translateY(-12px) rotateZ(1deg); /* Slight rotation on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: -5px; /* Extend slightly outside */
+    left: -5px;
+    right: -5px;
+    height: 15px; /* Thicker top bar */
+    background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    z-index: 2;
+}
+
+.event-card h4 {
+    color: var(--color-primary);
+    margin-top: 25px; /* Space for the top bar */
+    font-size: 2.5em; /* Larger */
+}
+
+.event-card p {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+}
+
+.event-card .icon {
+    color: var(--color-secondary);
+    font-size: 1.5em; /* Larger icon */
+    margin-right: 12px;
+}
+
+/* Galeri Section */
+#galeri {
+    background-color: var(--color-background-light);
+    border-bottom: 2px dashed rgba(var(--color-primary), 0.2);
+}
+
+.gallery-grid {
+    display: grid;
+    /* Main grid setup - flexible columns with minmax */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: minmax(250px, auto); /* Set a base row height for consistent items */
+    gap: 20px;
+    margin-top: 60px;
+    align-items: stretch; /* Ensure items stretch to fill available space */
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s ease-out, box-shadow 0.5s ease;
+    border: 4px solid var(--color-secondary);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* For images within items to fill */
+    width: 100%;
+    height: 100%; /* Important for grid auto-rows */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the item area, cropping if necessary */
+    border-radius: 12px; /* Slight inset for border */
+    transition: transform 0.4s ease-out;
+}
+
+/* Specific styling for large items in the grid */
+.gallery-item.large {
+    grid-column: span 2; /* Span two columns */
+    grid-row: span 2; /* Span two rows */
+}
+
+.gallery-item:hover {
+    transform: scale(1.05) rotateZ(0deg); /* Slightly less rotation for grid */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+.gallery-item:hover img {
+    transform: scale(1.03); /* Slight zoom on image */
+}
+
+/* Hadiah Digital Section */
+#hadiah-digital {
+    background-color: #fefcf9;
+    border-bottom: 2px dashed rgba(var(--color-primary), 0.2);
+}
+
+.transfer-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.transfer-item {
+    background: linear-gradient(135deg, #fffefc, #fbf7f0);
+    border: 2px solid var(--color-secondary);
+    border-radius: 15px;
+    padding: 30px;
+    width: 300px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transfer-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.transfer-item .bank-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
+}
+
+.transfer-item h4 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.transfer-item p {
+    font-size: 1.05em;
+    margin-bottom: 8px;
+}
+
+.transfer-item .rek-number {
+    font-family: var(--font-numbers);
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-copy:hover {
+    background-color: var(--color-secondary);
+    transform: scale(1.05);
+}
+
+.btn-copy .fas {
+    margin-right: 8px;
+}
+
+
+/* Combined RSVP & Ucapan Section */
+#rsvp-ucapan { /* Updated ID */
+    background-color: #fefcf9;
+}
+
+.combined-form { /* New class for the combined form */
+    max-width: 650px;
+    margin: 60px auto;
+    background: linear-gradient(160deg, var(--color-background-light), #fcf7ef);
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    border: 2px solid rgba(var(--color-secondary), 0.3);
+}
+
+.combined-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-size: 1.2em;
+}
+
+.combined-form input[type="text"],
+.combined-form input[type="number"],
+.combined-form select,
+.combined-form textarea {
+    width: calc(100% - 28px);
+    padding: 15px;
+    margin-bottom: 30px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 1.1em;
+    background-color: #fffaf5;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.combined-form input[type="text"]:focus,
+.combined-form input[type="number"]:focus,
+.combined-form select:focus,
+.combined-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(var(--color-primary), 0.3), 0 0 10px rgba(0,0,0,0.1);
+}
+
+.combined-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.ucapan-list {
+    margin-top: 70px;
+    text-align: left;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ucapan-item {
+    background-color: #fffef8;
+    border: 1px solid rgba(var(--color-secondary), 0.3);
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ucapan-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-secondary), var(--color-primary));
+}
+
+.ucapan-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ucapan-item strong {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.ucapan-item small {
+    color: #8D6E63;
+    font-size: 0.95em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.ucapan-item p {
+    margin-bottom: 0;
+    font-size: 1.05em;
+    color: var(--color-text-dark);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    padding: 50px 30px;
+    text-align: center;
+    font-size: 1em;
+    letter-spacing: 0.8px;
+    border-top: 6px solid var(--color-secondary);
+}
+
+.footer p {
+    margin: 10px 0;
+    color: var(--color-text-light);
+    opacity: 0.9;
+}
+
+.footer p:last-child {
+    font-family: var(--font-accent);
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes rotateSubtle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fly {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    25% { transform: translate(20vw, 5vh) rotate(15deg); }
+    50% { transform: translate(40vw, -10vh) rotate(-10deg); }
+    75% { transform: translate(60vw, 15vh) rotate(5deg); }
+    100% { transform: translate(80vw, 0) rotate(0deg); opacity: 0; }
+}
+
+@keyframes rotateAndPulse {
+    0% { transform: rotate(0deg); opacity: 1; }
+    50% { transform: rotate(180deg); opacity: 0.8; }
+    100% { transform: rotate(360deg); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        margin: 0 auto;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .decorative-overlay {
+        display: none; /* Hide fixed ornaments on smaller screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .section-padding {
+        padding: 70px 40px;
+    }
+
+    h1 { font-size: 4em; }
+    h2 { font-size: 3em; }
+    h3 { font-size: 2.4em; }
+    h4 { font-size: 1.8em; }
+
+    .countdown {
+        font-size: 2.8em;
+        gap: 20px;
+    }
+
+    .countdown span {
+        padding: 15px 25px;
+        min-width: 90px;
+    }
+
+    .btn-scroll {
+        padding: 16px 40px;
+        font-size: 1.2em;
+        margin-top: 40px;
+    }
+
+    .mempelai-item {
+        flex: 0 0 90%;
+        max-width: 480px;
+        padding: 40px;
+    }
+
+    .event-card {
+        flex: 1 1 90%;
+        max-width: 500px;
+        padding: 35px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted min-width for mobile grid */
+        grid-auto-rows: minmax(180px, auto); /* Adjust row height for smaller screens */
+        gap: 15px;
+    }
+    .gallery-item.large {
+        grid-column: span 1; /* On smaller screens, revert to 1 column */
+        grid-row: span 1; /* On smaller screens, revert to 1 row */
+    }
+    .butterfly {
+        width: 50px;
+        height: 50px;
+    }
+
+    .timeline::after {
+        left: 30px; /* Adjust line position */
+    }
+    .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 10px;
+        text-align: left;
+    }
+    .timeline-item.right {
+        left: 0;
+    }
+    .timeline-item::after {
+        left: 23px; /* Adjust dot position */
+    }
+}
+
+@media (max-width: 600px) {
+    .section-padding {
+        padding: 50px 25px;
+    }
+
+    h1 { font-size: 3.2em; }
+    h2 { font-size: 2.4em; }
+    h3 { font-size: 2em; margin-bottom: 40px;}
+    h3::after { width: 100px; height: 3px; }
+    h4 { font-size: 1.6em; }
+
+    .hero-section {
+        padding: 120px 25px;
+    }
+
+    .salam {
+        font-size: 1.5em;
+    }
+
+    .tanggal-acara {
+        font-size: 1.6em;
+    }
+
+    .countdown {
+        font-size: 2.2em;
+        gap: 15px;
+    }
+    .countdown span {
+        padding: 12px 20px;
+        min-width: 75px;
+    }
+
+    .btn {
+        padding: 14px 30px;
+        font-size: 1.1em;
+    }
+
+    .btn-scroll {
+        padding: 14px 35px;
+        font-size: 1.1em;
+        margin-top: 30px;
+    }
+
+    .img-mempelai {
+        width: 180px;
+        height: 180px;
+        border-width: 6px;
+        box-shadow: 0 0 0 8px rgba(var(--color-secondary), 0.3);
+    }
+
+    .event-card {
+        padding: 30px;
+    }
+    .event-card h4 {
+        font-size: 2em;
+    }
+
+    .combined-form { /* Updated class */
+        padding: 35px 25px;
+    }
+
+    .combined-form input[type="text"],
+    .combined-form input[type="number"],
+    .combined-form select,
+    .combined-form textarea {
+        width: calc(100% - 20px);
+        padding: 12px;
+    }
+
+    .ucapan-list {
+        padding: 0 10px; /* Add padding for list on mobile */
+    }
+
+    .ucapan-item {
+        padding: 20px 25px;
+    }
+    .ucapan-item strong {
+        font-size: 1.2em;
+    }
+
+    .footer {
+        padding: 40px 20px;
+    }
+    .footer p:last-child {
+        font-size: 1.1em;
+    }
+    .butterfly {
+        width: 40px; /* Smaller butterflies on mobile */
+        height: 40px;
+    }
+
+    .music-control {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+    .music-control:hover {
+        width: 140px; /* Smaller width on hover for mobile */
+    }
+
+    .transfer-item {
+        width: 100%;
+        max-width: 300px; /* Constrain width on small screens */
+    }
+}
+
+@media (max-width: 450px) {
+    h1 { font-size: 2.8em; }
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.8em; }
+
+    .countdown {
+        font-size: 1.8em;
+        gap: 10px;
+    }
+    .countdown span {
+        padding: 10px 15px;
+        min-width: 65px;
+    }
+    .btn-scroll {
+        padding: 12px 30px;
+        font-size: 1em;
+        margin-top: 25px;
+    }
+    .mempelai-item {
+        padding: 30px;
+    }
+    .img-mempelai {
+        width: 150px;
+        height: 150px;
+    }
+    .event-card h4 {
+        font-size: 1.8em;
+    }
+
+    .ayat-card {
+        padding: 25px;
+    }
+    .ayat-card .arab {
+        font-size: 1.8em;
+    }
+    .ayat-card .latin, .ayat-card .arti {
+        font-size: 1em;
+    }
+}
